@@ -14,6 +14,18 @@ servers:
         default: https
 
 paths:
+
+  /pokemons:
+    get:
+      operationId: getPokemons
+      responses:
+        200:
+          description: An array of pokemons
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pokemonList'
+
   /authors:
     get:
       tags:
@@ -21,7 +33,7 @@ paths:
       operationId: getAuthors
       parameters:
        - name: limit
-         description: number of returned results
+         description: number of returned results test
          in: query
          schema:
            type: integer
@@ -61,6 +73,16 @@ paths:
 
 components:
   schemas:
+    pokemonList:
+      type: array
+      items:
+        $ref: '#/components/schemas/pokemon'
+
+    pokemon:
+      type: object
+      properties:
+        name:
+          type: string
 
     authorList:
       type: object
